@@ -1,0 +1,39 @@
+results_dir: ./results/
+
+# Dataset
+dataset: nyud
+tr_batch: 2 # per gpu
+val_batch: 4
+nworkers: 4
+task_dict:
+  semseg: 1
+  normals: 1
+  edge: 1
+  depth: 1
+
+# Model
+arch: tc
+backbone:
+  backbone_type: adapter_swin_t
+  pretrained: True
+  adapter_module: MixTaskAdapter
+  down_ratio: 4
+  reduction_ratio: 2
+decoder:
+  decoder_type: task_gate_decoder
+  task_ind_dim: 64
+  task_embed_dim: 16
+head:
+  head_type: transpose
+
+
+# Optimizer and Scheduler
+max_epochs: 500 # set to 0 when using iters
+max_iters: 0
+eval_freq: 10
+optimizer: adamw
+lr: 1e-4
+weight_decay: 1e-4
+scheduler: cosine
+warmup_epochs: 10
+grad_clip: 0

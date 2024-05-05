@@ -1,0 +1,37 @@
+results_dir: ./results/
+
+# Dataset
+dataset: pascalcontext
+tr_batch: 2 # per gpu
+val_batch: 4
+nworkers: 4
+task_dict:
+  semseg: 1
+  human_parts: 1
+  normals: 1
+  edge: 1
+  sal: 1
+
+# Model
+arch: tc
+backbone:
+  backbone_type: prompt_swin_t
+  pretrained: True
+  num_prompts: 10
+decoder:
+  decoder_type: light_prompt_decoder
+  num_prompts: 10
+head:
+  head_type: transpose
+
+
+# Optimizer and Scheduler
+max_epochs: 300 # set to 0 when using iters
+max_iters: 0
+eval_freq: 10
+optimizer: adamw
+lr: 1e-4
+weight_decay: 1e-4
+scheduler: cosine
+warmup_epochs: 5
+grad_clip: 0
