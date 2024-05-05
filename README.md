@@ -1,4 +1,4 @@
-# MTDP_Lib: A Simple Framework for Multi-Task Dense Prediction
+# MTDP_Lib: A Simple Code Base for Multi-Task Dense Prediction
 
 ## Introduction
 
