@@ -143,7 +143,7 @@ You can follow the steps below:
 2. The SEISM project is based on MATLAB, make sure you have MATLAB installed.
 3. Clone our modified version of SEISM into `eval/` folder:
 ```
-cd eval
+cd evaluation
 git clone https://github.com/innovator-zero/seism.git
 ```
 4. Modify the `seism/src/gt_wrappers/db_root_dir.m` to specify the path to the dataset.
