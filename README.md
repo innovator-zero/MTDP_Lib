@@ -149,7 +149,7 @@ git clone https://github.com/innovator-zero/seism.git
 4. Modify the `seism/src/gt_wrappers/db_root_dir.m` to specify the path to the dataset.
 5. Run the following command:
 ```
-cd eval
+cd evaluation
 python edge_evaluation.py --exp $EXP_NAME --results_dir $RESULTS_DIR --datasets $DATASET --nms
 ```
 `$DATASET` is either `PASCALContext` or `NYUD`, `--nms` will firstly apply non-maximum suppression (NMS) processing to the predictions, the processed images will be saved in `$RESULTS_DIR/$EXP_NAME/predictions/edge/nms/`.
