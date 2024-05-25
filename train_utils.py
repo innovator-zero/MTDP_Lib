@@ -8,7 +8,6 @@ from utils import get_output, to_cuda
 
 
 class PolynomialLR(torch.optim.lr_scheduler._LRScheduler):
-
     def __init__(self, optimizer, max_iterations, gamma=0.9, min_lr=0., last_epoch=-1):
         self.max_iterations = max_iterations
         self.gamma = gamma
@@ -44,7 +43,7 @@ def get_optimizer_scheduler(config, model):
 
     if config['scheduler'] == 'poly':
         # Operate in each iteration
-        assert config['max_iter'] is not None
+        assert config['max_iters'] is not None
         scheduler = PolynomialLR(optimizer=optimizer, max_iterations=int(config['max_iters']), gamma=0.9, min_lr=0)
 
     elif config['scheduler'] == 'cosine':
@@ -118,7 +117,7 @@ def train_one_iter_task_conditional(tasks, order, batch, model, optimizer, crite
     scaler.update()
 
 
-def train_one_epoch(arch, epoch, iter_count, max_iter, tasks, train_dl, model, optimizer, scheduler, criterion, scaler,
+def train_one_epoch(arch, epoch, iter_count, max_iters, tasks, train_dl, model, optimizer, scheduler, criterion, scaler,
                     grad_clip, train_loss, local_rank, fp16):
     """
     Train one batch
@@ -150,7 +149,7 @@ def train_one_epoch(arch, epoch, iter_count, max_iter, tasks, train_dl, model, o
 
             iter_count += 1
 
-            if iter_count >= max_iter:
+            if iter_count >= max_iters:
                 end_signal = True
                 break
             else:

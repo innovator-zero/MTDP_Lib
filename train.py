@@ -115,17 +115,17 @@ def main():
 
     # Determine max epochs and iterations
     max_epochs = configs['max_epochs']
-    max_iter = configs['max_iters']
+    max_iters = configs['max_iters']
 
     if max_epochs > 0:
-        max_iter = 1000000
+        max_iters = 1000000
         if local_rank == 0:
             print("Training for %d epochs" % max_epochs)
     else:
-        assert max_iter > 0
+        assert max_iters > 0
         max_epochs = 1000000
         if local_rank == 0:
-            print("Training for %d iterations" % max_iter)
+            print("Training for %d iterations" % max_iters)
 
     # Resume from checkpoint
     if args.checkpoint is not None:
@@ -153,7 +153,7 @@ def main():
 
     for epoch in range(start_epoch, max_epochs):
         logs = {}
-        end_signal, iter_count = train_one_epoch(arch, epoch, iter_count, max_iter, task_list, train_dl, model,
+        end_signal, iter_count = train_one_epoch(arch, epoch, iter_count, max_iters, task_list, train_dl, model,
                                                  optimizer, scheduler, criterion, scaler, configs['grad_clip'],
                                                  train_loss, local_rank, args.fp16)
 
